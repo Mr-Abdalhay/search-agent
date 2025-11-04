@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results for "{{ query }}"</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-container">
+            <h1><i class="fas fa-newspaper"></i> News Search</h1>
+            <a href="/" class="back-button"><i class="fas fa-arrow-left"></i> Back to Search</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="search-results-header">
+            <h2>Search Results for "<span class="highlight">{{ query }}</span>"</h2>
+        </div>
+
+        {% if summary %}
+        <div class="summary-box">
+            <div class="summary-header">
+                <i class="fas fa-robot"></i>
+                <h3>AI-Powered Summary</h3>
+            </div>
+            <div class="summary-content">
+                {{ summary }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="results">
+            {% for article in results %}
+                <div class="article">
+                    <div class="article-image">
+                        {% if article.urlToImage %}
+                            <img src="{{ article.urlToImage }}" alt="{{ article.title }}">
+                        {% else %}
+                            <div class="placeholder-image">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="article-content">
+                        <h2><a href="{{ article.url }}" target="_blank">{{ article.title }} <i class="fas fa-external-link-alt"></i></a></h2>
+                        <div class="article-meta">
+                            <span class="source"><i class="fas fa-globe"></i> {{ article.source }}</span>
+                            <span class="date"><i class="fas fa-clock"></i> {{ article.published_at }}</span>
+                        </div>
+                        <p class="description">{{ article.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 News Search. Powered by NewsAPI and AI Technology.</p>
+    </footer>
+</body>
+</html>
