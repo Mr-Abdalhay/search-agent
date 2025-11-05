@@ -52,6 +52,3 @@ The server strips out articles that match configured blacklist patterns (by titl
 - If the Gemini summarizer fails to initialize, summaries will be disabled but the search results will still display.
 - If you hit rate limits on NewsAPI or Gemini, consider increasing the time window between requests or upgrading API plans.
 
-## License
-
-MIT
