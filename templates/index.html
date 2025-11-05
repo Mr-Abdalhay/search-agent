@@ -46,8 +46,15 @@
                 <button type="submit" class="search-button">
                     <i class="fas fa-search"></i> Search News
                 </button>
-                
-                <script>
+
+                <div class="notification-optin">
+                    <input type="checkbox" name="notify_new_news" value="1" id="notify_new_news">
+                    <label for="notify_new_news">
+                        <i class="fas fa-bell"></i> Notify me if new news appears after
+                    </label>
+                    <input type="number" name="notification_interval" id="notification_interval" value="60" min="1" max="1440" class="notification-minutes">
+                    <label for="notification_interval">minutes</label>
+                </div>                <script>
                     function addUrlField() {
                         const urlsList = document.getElementById('custom-urls-list');
                         const urlInput = document.createElement('div');
