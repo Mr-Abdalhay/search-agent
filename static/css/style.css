@@ -135,15 +135,73 @@ input[type="number"]:focus {
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(41,98,255,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
     align-self: flex-start;
+    letter-spacing: 0.03em;
 }
 
 .search-button:hover {
-    background-color: var(--secondary-color);
+    background: linear-gradient(90deg, #2962ff 60%, #0039cb 100%);
+    box-shadow: 0 4px 16px rgba(41,98,255,0.15);
 }
+
+.read-more-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(41,98,255,0.07);
+}
+
+.read-more-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(41,98,255,0.13);
+}
+
+.notification-optin {
+    margin: 1.5rem 0 0.5rem 0;
+    padding: 1rem;
+    background: #e3f0ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(41,98,255,0.07);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.notification-optin input[type="checkbox"] {
+    accent-color: var(--primary-color);
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.7em;
+}
+
+.notification-minutes {
+    width: 70px !important;
+    padding: 0.4rem !important;
+    margin: 0 0.5rem !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+}
+
 
 /* Custom URLs Section */
 .custom-urls-container {
