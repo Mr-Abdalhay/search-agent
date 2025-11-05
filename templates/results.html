@@ -33,30 +33,49 @@
 
         <div class="results">
             {% for article in results %}
-                <div class="article">
-                    <div class="article-image">
-                        {% if article.urlToImage %}
-                            <img src="{{ article.urlToImage }}" alt="{{ article.title }}">
-                        {% else %}
-                            <div class="placeholder-image">
-                                <i class="fas fa-newspaper"></i>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="article-content">
-                        <h2><a href="{{ article.url }}" target="_blank">{{ article.title }} <i class="fas fa-external-link-alt"></i></a></h2>
-                        <div class="article-meta">
-                            <span class="source"><i class="fas fa-globe"></i> {{ article.source }}</span>
-                            <span class="date"><i class="fas fa-clock"></i> {{ article.published_at }}</span>
+                    {% set is_google_rss = article.url and 'news.google.com/rss/articles' in article.url %}
+                    <div class="article">
+                        <div class="article-image">
+                            {% if article.urlToImage %}
+                                <img src="{{ article.urlToImage }}" alt="{{ article.title }}">
+                            {% else %}
+                                <div class="placeholder-image">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                            {% endif %}
                         </div>
-                        <p class="description">{{ article.description }}</p>
+                        <div class="article-content">
+                            <h2>{{ article.title }}</h2>
+                            <div class="article-meta">
+                                <span class="source"><i class="fas fa-globe"></i> {{ article.source }}</span>
+                                <span class="date"><i class="fas fa-clock"></i> {{ article.published_at }}</span>
+                            </div>
+                            <p class="description">
+                                {% if article.description %}
+                                    {{ article.description[:200] }}{% if article.description|length > 200 %}...{% endif %}
+                                {% endif %}
+                            </p>
+                            {% if not is_google_rss %}
+                                <a href="{{ article.url }}" target="_blank" class="read-more-btn">Read More <i class="fas fa-arrow-right"></i></a>
+                            {% else %}
+                                <button class="read-more-btn" onclick="window.open('{{ article.url }}', '_blank')">Read More <i class="fas fa-arrow-right"></i></button>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
             {% endfor %}
         </div>
     </div>
     <footer>
         <p>&copy; 2025 News Search. Powered by NewsAPI and AI Technology.</p>
     </footer>
+    </body>
+
+    {% if notify_new_news %}
+    <script>
+        // This is a placeholder for browser notification logic
+        // In a real app, use WebSocket or polling to trigger this when new news is found
+        alert('You will be notified if new news appears for your search in 1 hour.');
+    </script>
+    {% endif %}
 </body>
 </html>
